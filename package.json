@@ -1,0 +1,16 @@
+{
+  "name": "vfr-module",
+  "version": "1.0.19",
+  "description": "Module verify and generate jwt for many applications.",
+  "main": "./lib/index.js",
+  "bin":{
+	"vfr-module": "bin/vfr.js"	
+  },
+  "keywords": ["jwt", "protect", "token"],
+  "author": "Marcus Paulo Soares Dantas",
+  "license": "ISC",
+  "preferGlobal": "true",
+  "dependencies": {
+    "jsonwebtoken": "8.2.1"
+  }
+}
