@@ -8,7 +8,7 @@
 </p>
 
 
-##About
+## About
  
 <div style="text-align: justify"> 
 Vfr is middleware based on the jsonwebtoken module that has the intention of acting as a "blocker" of private routes. Exactly for this reason I decided to choose a thorn hog as a mascot of this module because it conveys an idea of "protection" by its carcass made of thorns preventing its natural predators from killing it.
