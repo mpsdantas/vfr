@@ -49,4 +49,27 @@ module.exports = (application) => {
 
 };
 ```
+## Methods
 
+`vfr.analyzer(req, res, next)`
+
+This method is used to block the desired routes, it must be applied as a middleware of your route.
+
+`vfr.getToken({data:"mydata},timeExpiresInHours)`
+
+This method is responsible for generating valid tokens for application.
+
+`vfr.decoded(token, callback(err, decoded))`
+
+This method is responsible for decoding the token information.
+
+`vfr.use(secret)`
+
+This method is responsible for setting your secret key.
+
+
+## Informations
+
+E-mail: mpsdantas15@gmail.com
+GitHub: http://github.com/mpsdantas
+Repo: http://github.com/mpsdantas/vfr
