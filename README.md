@@ -31,8 +31,8 @@ module.exports = (application) => {
 	
 	//Router protected	
 	application.get('/api/hello', vfr.analyzer, (req, res) =>{res.send('Hello');});	
-	
-        //Get token
+
+	//Get token
 	application.get('/api/token',(req,res)=>{
 		const token = vfr.getToken({tipoUser:"admin",nomeUser:"mpsdantas"},36);
 		res.status(200).json({token});
@@ -71,5 +71,7 @@ This method is responsible for setting your secret key.
 ## Informations
 
 E-mail: mpsdantas15@gmail.com
+
 GitHub: http://github.com/mpsdantas
+
 Repo: http://github.com/mpsdantas/vfr
