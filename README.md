@@ -4,7 +4,7 @@
 [![NODE](https://img.shields.io/badge/node-v9.0.0-blue.svg?style=for-the-badge)](https://nodejs.org/en//)
 
 <p align="center"> 
- <img width="200px;" src="https://cdn.pixabay.com/photo/2014/04/03/10/09/hedgehog-309958_640.png">
+ <img width="200px;" src="https://image.ibb.co/gVT7dc/68747470733a2f2f63646e2e706978616261792e636f6d2f70686f746f2f323031342f30342f30332f31302f30392f6865646765686f672d3330393935385f3634302e706e67.png">
 </p>
 
 
