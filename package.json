@@ -1,6 +1,6 @@
 {
   "name": "vfr-module",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Module verify and generate jwt for many applications.",
   "main": "./lib/index.js",
   "bin":{
