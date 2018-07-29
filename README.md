@@ -25,27 +25,46 @@ To install vfr-module, execute the following command:
 ## Using
 
 ```js
-const vfr = require('vfr-module');
-vfr.use("mySecret");
-module.exports = (application) => {
-	
-	//Router protected	
-	application.get('/api/hello', vfr.analyzer, (req, res) =>{res.send('Hello');});	
+const mongoose = require('mongoose');
 
-	//Get token
-	application.get('/api/token',(req,res)=>{
-		const token = vfr.getToken({tipoUser:"admin",nomeUser:"mpsdantas"},36);
-		res.status(200).json({token});
-	});
-	
-	//Decoded one token
-	application.get('/api/decoded/:token', (req,res)=>{
-		const token = req.params.token;
-		vfr.decoded(token,(err,decoded)=>{
-			res.status(200).json(decoded);
-			return;
-		});	
-	});
+mongoose.connect('mongodb://localhost:27017/vfr-basic', { useNewUrlParser: true });
+mongoose.Promise = global.Promise; // → Queremos que o mongoose utilize promises ES6
+mongoose.connection.on('error', err => {
+    console.log(`🙅 🚫 → ${err.message}`);
+});
+
+const bodyParser = require('body-parser');
+
+const vfr = require('vfr-module');
+vfr.use('myKeySecret');
+
+const express = require('express');
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+/* ROUTER FREE */
+app.get('/', (req, res) => {
+    res.send('Hello world');
+});
+
+/* GET ONE TOKEN */
+app.get('/getToken', async (req, res) => {
+    const tokenUser = vfr.getToken({user:'mpsdantas'}); // Get token of json {user: 'mpsdantas'}
+    await vfr.saveToken(tokenUser); // Saving the token in database
+    return res.status(200).json({token:tokenUser}); // send the token
+});
+
+/* BLOCK ROUTER */
+app.get('/hiApi/:token', vfr.analyzer /* Analizer the router*/, async (req, res, next) => {
+    const data = await vfr.decoded(vfr.getTokenRequest(req)); // Decoded token
+    res.status(200).json({data: data}) //Send data
+});
+
+app.listen('3000', () => {
+    console.log(`➡➡➡ The server is online: http://localhost:3000/ ☻`)
+});
 
 };
 ```
@@ -59,16 +78,25 @@ This method is used to block the desired routes, it must be applied as a middlew
 
 This method is responsible for generating valid tokens for application.
 
-`vfr.decoded(token, callback(err, decoded))`
+`await vfr.decoded(token)`
 
-This method is responsible for decoding the token information.
+This method is responsible for decoding the token information. (Promisse)
 
 `vfr.use(secret)`
 
 This method is responsible for setting your secret key.
 
+`vfr.getTokenRequest(request)`
+
+This method returns the token sent by the user in the request.
+
+`vfr.saveToken(token);`
+
+This method saves the token in the database.
 
 ## Informations
+
+Exemple: https://github.com/mpsdantas/vfr-basic
 
 E-mail: mpsdantas15@gmail.com
 
